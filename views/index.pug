@@ -1,5 +1,26 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+
+  head
+    title Mi página de gimnasio
+    meta(name='description' content='Página de gimnasio para entrenamiento físico y salud.')
+    meta(name='keywords' content='gimnasio, entrenamiento, salud, deporte')
+    link(rel='stylesheet' href='/index.css')
+
+  body
+
+    div.img-principal.d-flex
+      .container-fluid
+        .row.align-items-center.justify-content-start.p-5
+          .col-md-6.text-light.text-start.p-0
+            h1.fs-1.fs-md-5 POTENCIAMOS TU BIENESTAR
+            p.fs-4.fs-md-4 Comenzá hoy a buscar tu mejor versión
+            a.btn(href='#') ¡Asociate ahora!
+
+
+
+
+
+
+
