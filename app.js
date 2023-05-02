@@ -2,14 +2,29 @@ var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
+const session = require("express-session");
 var logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+const indexRouter = require('./routes/index')
+const authRouter = require('./routes/auth')
+const detalleRutinaRouter = require('./routes/detalleRutina')
+const ejercicioRouter = require('./routes/ejercicio')
+const perfilDeEntrenamientoRouter = require('./routes/perfilDeEntrenamiento')
+const progresoRouter = require('./routes/progreso')
+const retroalimentacionRouter = require('./routes/retroalimentacion')
+const rutinaRouter = require('./routes/rutina')
+const usuarioRouter = require('./routes/usuario')
 
 var app = express();
 
-// view engine setup
+app.use(
+  session({
+    resave: true,
+    saveUninitialized: true,
+    secret: "palabra secreta",
+  })
+);
+
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
@@ -20,7 +35,20 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/auth', authRouter);
+app.use('/detalleRutina', detalleRutinaRouter);
+app.use('/ejercicio', ejercicioRouter);
+app.use('/perfilDeEntrenamiento', perfilDeEntrenamientoRouter);
+app.use('/progreso', progresoRouter);
+app.use('/retroalimentacion', retroalimentacionRouter);
+app.use('/rutina', rutinaRouter);
+app.use('/usuario', usuarioRouter);
+
+
+
+
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
