@@ -19,23 +19,24 @@ block content
 
 
     div.img-principal.d-flex
-      .container-fluid
-        .row.align-items-center.justify-content-start.p-5
-          .col-md-6.text-light.text-start.p-0
-            h1.fs-1.fs-md-5 POTENCIAMOS TU BIENESTAR
-            p.fs-4.fs-md-4 Comenzá hoy a buscar tu mejor versión
-            a.btn(href='#') ¡Asociate ahora!
 
+      .row.align-items-start.justify-content-center.p-5.mt-5
+        .col-md-8.text-light.text-start.p-0
+          h1.fs-1.fs-md-5 POTENCIAMOS TU BIENESTAR
+          p.fs-4.fs-md-4 Comenzá hoy a buscar tu mejor versión
+          a.btn(href='#') ¡Asociate ahora!
+
+    //seccion membresia
     section#contenido
       .row
-        .col-md-6.col-lg-4
+        .col-sm-12.col-md-6.col-lg-4
           .left-column
             h3.text-white.fs-5.fs-md-5 TU MEMBRESÍA
             h1.text-white.fs-4.fs-md-4 A OTRO NIVEL 
             p.fs-4.fs-md-4 Todo lo que necesitas para acceder a un mundo de deporte, salud y bienestar con +300 centros deportivos en todo el país
             a.btn(href='#') Asociate
 
-        .col-md-6.col-lg-8
+        .col-sm-12.col-md-6.col-lg-8
           .right-column
             .cards
               each num in [1,2,3]
@@ -44,53 +45,61 @@ block content
                   p.m-0 Encontrá tu espacio más cercano para mantenerte activo y saludable.
                   a.text-warning Enlace amarillo
 
-
-
-
+    //seccion mensualidad
     section.contenido2
-      .row
-        .col-sm-12.col-md-6.col-lg-6.mb-4
-          h1.text-black.fs-5.fs-md-5 ELEJÍ TU PLAN
-          p.text-black.fs-2.fs-md-2 Todo lo que buscás en un solo lugar. Estás a un click de distancia de asociarte a la comunidad deportiva más grande del país.
-          a.btn.bg-dark.text-white(href='#') Mensual
+      .row.d-flex.justify-content-between
+        .col-sm-12.col-md-6.col-lg-4.mb-4
+          .left-column
+            h1.text-black.fs-5.fs-md-5 ELEGÍ TU PLAN
+            p.text-black.fs-2.fs-md-2 Todo lo que buscás en un solo lugar. Estás a un click de distancia de asociarte a la comunidad deportiva más grande del país.
+            a.btn.bg-dark.text-white.border-0(href='#') Mensual
 
         .col-sm-12.col-md-6.col-lg-6
-          .plan
-                .inner
-                  span.pricing
+          .right-column
+            .plan
+              .inner
+                span.pricing
+                  span
+                    | $15.000
+                    small / m
+                p.title PLAN TOTAL
+                p.info Este plan es para aquellos que ya tienen un equipo y dirigen un gran negocio
+                ul.features
+                  li
+                    span.icon
+                      svg(height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg")
+                        path(d="M0 0h24v24H0z" fill="none")
+                        path(fill="currentColor" d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414")
                     span
-                      | $49
-                      small / m
-                  p.title Professional
-                  p.info This plan is for those who have a team already and running a large business.
-                  ul.features
-                    li
-                      span.icon
-                        svg(height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg")
-                          path(d="M0 0h24v24H0z" fill="none")
-                          path(fill="currentColor" d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414")
-                      span
-                        strong 20
-                        |  team members
-                    li
-                      span.icon
-                        svg(height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg")
-                          path(d="M0 0h24v24H0z" fill="none")
-                          path(fill="currentColor" d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414")
-                      span Plan
-                        strong team meetings
-                    li
-                      span.icon
-                        svg(height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg")
-                          path(d="M0 0h24v24H0z" fill="none")
-                          path(fill="currentColor" d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414")
-                      span File sharing
-                  .action
-                    a.button(href="#") Choose plan
+                      strong 20
+                      |  miembros del equipo
+                  li
+                    span.icon
+                      svg(height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg")
+                        path(d="M0 0h24v24H0z" fill="none")
+                        path(fill="currentColor" d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414")
+                    span Plan
+                      strong reuniones del equipo
+                  li
+                    span.icon
+                      svg(height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg")
+                        path(d="M0 0h24v24H0z" fill="none")
+                        path(fill="currentColor" d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414")
+                    span Compartir archivos
+                .action
+                  a.button(href="#") Asociate
+              .mensual
+                inner
+                  .features
+                    ul
+                      li.check Acceso a +300 sedes
+                      li.check Actividades Indoor/Outdoor
+                      li.check Clases en vivo y On Demand
+                      li.check App Nutrición
+                      li.check Tuluka
 
-          
+                    a.button(href="#") Ver Sedes Total
 
-   
 
 
 

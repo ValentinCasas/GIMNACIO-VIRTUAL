@@ -1,21 +1,29 @@
+:root {
+    --color-amarillo-global: #ffd300;
+    --color-grey-card:rgba(31, 31, 31, .87);
+}
+
+
 .plan {
     border-radius: 16px;
     box-shadow: 0 30px 30px -25px rgba(0, 38, 255, 0.205);
     padding: 10px;
-    background-color: #fff;
+    /* background-color: #fff; */
+    background-color: var(--color-grey-card);
     color: #697e91;
   }
   
   .plan strong {
     font-weight: 600;
-    color: #425275;
+    color: var(--color-amarillo-global);
   }
   
   .plan .inner {
     align-items: center;
     padding: 20px;
     padding-top: 40px;
-    background-color: #ecf0ff;
+    /* background-color: #ecf0ff; */
+    background-color:rgba(61, 61, 61, 0.87);
     border-radius: 12px;
     position: relative;
   }
@@ -43,7 +51,7 @@
   .plan .title {
     font-weight: 600;
     font-size: 1.25rem;
-    color: #425675;
+    color: #ebecee;
   }
   
   .plan .title + * {
@@ -97,9 +105,9 @@
   }
   
   .plan .button {
-    background-color: #6558d3;
+    background-color: #bed6fb;
     border-radius: 6px;
-    color: #fff;
+    color: #425475;
     font-weight: 500;
     font-size: 1.125rem;
     text-align: center;
@@ -111,5 +119,5 @@
   }
   
   .plan .button:hover, .plan .button:focus {
-    background-color: #4133B7;
+    background-color: #d6e6fd;
   }

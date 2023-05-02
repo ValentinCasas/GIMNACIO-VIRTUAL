@@ -1,5 +1,6 @@
 :root {
     --color-amarillo-global: #ffd300;
+    --color-grey-card:rgba(31, 31, 31, .87);
 }
 
 
@@ -9,9 +10,9 @@ body {
     overflow-x: hidden;
 }
 
-* {
+/* * {
     border: .1px solid white;
-}
+} */
 
 .img-principal {
     background-image: url('../imagenes-gym/img-deportistas/mujer2.jpg');
@@ -48,7 +49,7 @@ h1 {
 }
 
 
-#contenido .left-column {
+#contenido .left-column, .contenido2 .left-column {
     position: sticky;
     left: 50px;
     top: 25%;

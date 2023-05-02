@@ -77,44 +77,57 @@ html
     /* 3 flechas en movimiento */
 
     $(document).ready(function() {
-      // flecha inicial
-      $('#flecha').click(function() {
-        $('html, body').animate({
-          scrollTop: $('#contenido').offset().top
-        }, 1000);
-        $(this).fadeOut();
-      });
-
-      // flecha que aparece de nuevo
-      /*var lastScrollTop = 0;
+      var lastScrollTop = 0;
       var arrowVisible = true;
+
+      // función para mostrar u ocultar la flecha
+      function toggleArrow() {
+        if ($(window).scrollTop() == 0) {
+          // mostrar flecha si está en la parte superior de la página
+          $('#flecha').fadeIn();
+          arrowVisible = true;
+        } else if (arrowVisible) {
+          // ocultar flecha si no está en la parte superior de la página
+          $('#flecha').fadeOut();
+          arrowVisible = false;
+        }
+      }
+
+      // mostrar flecha inicialmente
+      toggleArrow();
+
+      // controlar la aparición y desaparición de la flecha
       $(window).scroll(function() {
         var scrollTop = $(this).scrollTop();
         if (scrollTop > lastScrollTop) {
           // scroll hacia abajo
-          $('#flecha').fadeOut();
-          arrowVisible = false;
-        } else {
-          // scroll hacia arriba
-          if (scrollTop < 100) {
+          if (arrowVisible) {
             $('#flecha').fadeOut();
             arrowVisible = false;
-          } else {
-            if (!arrowVisible) {
-              setTimeout(function() {
-                $('#flecha').fadeIn();
-                arrowVisible = true;
-              }, 5000);
-            }
           }
+        } else {
+          // scroll hacia arriba
+          toggleArrow();
         }
         lastScrollTop = scrollTop;
-      });*/
-        });
+      });
+
+      // animación al hacer click en la flecha
+      $('#flecha').click(function() {
+        $('html, body').animate({
+          scrollTop: $('#contenido').offset().top
+        }, 1000);
+        $('#flecha').fadeOut();
+        arrowVisible = false;
+      });
+    });
 
 
 
-   
+
+
+
+
 
 
 
