@@ -6,9 +6,17 @@ block content
     title Mi página de gimnasio
     meta(name='description' content='Página de gimnasio para entrenamiento físico y salud.')
     meta(name='keywords' content='gimnasio, entrenamiento, salud, deporte')
+
     link(rel='stylesheet' href='/index.css')
+    link(rel='stylesheet' href='/cards.css')
 
   body
+
+    a(href="#contenido" id="flecha")
+      ion-icon(name="chevron-down-outline")
+      ion-icon(name="chevron-down-outline")
+      ion-icon(name="chevron-down-outline")
+
 
     div.img-principal.d-flex
       .container-fluid
@@ -18,7 +26,71 @@ block content
             p.fs-4.fs-md-4 Comenzá hoy a buscar tu mejor versión
             a.btn(href='#') ¡Asociate ahora!
 
+    section#contenido
+      .row
+        .col-md-6.col-lg-4
+          .left-column
+            h3.text-white.fs-5.fs-md-5 TU MEMBRESÍA
+            h1.text-white.fs-4.fs-md-4 A OTRO NIVEL 
+            p.fs-4.fs-md-4 Todo lo que necesitas para acceder a un mundo de deporte, salud y bienestar con +300 centros deportivos en todo el país
+            a.btn(href='#') Asociate
 
+        .col-md-6.col-lg-8
+          .right-column
+            .cards
+              each num in [1,2,3]
+                .card
+                  img(src=`/imagenes-gym/img-gym/gym${num}.jpg` alt="Descripción de la imagen")
+                  p.m-0 Encontrá tu espacio más cercano para mantenerte activo y saludable.
+                  a.text-warning Enlace amarillo
+
+
+
+
+    section.contenido2
+      .row
+        .col-sm-12.col-md-6.col-lg-6.mb-4
+          h1.text-black.fs-5.fs-md-5 ELEJÍ TU PLAN
+          p.text-black.fs-2.fs-md-2 Todo lo que buscás en un solo lugar. Estás a un click de distancia de asociarte a la comunidad deportiva más grande del país.
+          a.btn.bg-dark.text-white(href='#') Mensual
+
+        .col-sm-12.col-md-6.col-lg-6
+          .plan
+                .inner
+                  span.pricing
+                    span
+                      | $49
+                      small / m
+                  p.title Professional
+                  p.info This plan is for those who have a team already and running a large business.
+                  ul.features
+                    li
+                      span.icon
+                        svg(height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg")
+                          path(d="M0 0h24v24H0z" fill="none")
+                          path(fill="currentColor" d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414")
+                      span
+                        strong 20
+                        |  team members
+                    li
+                      span.icon
+                        svg(height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg")
+                          path(d="M0 0h24v24H0z" fill="none")
+                          path(fill="currentColor" d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414")
+                      span Plan
+                        strong team meetings
+                    li
+                      span.icon
+                        svg(height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg")
+                          path(d="M0 0h24v24H0z" fill="none")
+                          path(fill="currentColor" d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414")
+                      span File sharing
+                  .action
+                    a.button(href="#") Choose plan
+
+          
+
+   
 
 
 
