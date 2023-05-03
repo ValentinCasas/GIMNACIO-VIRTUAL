@@ -15,7 +15,7 @@ block content
 
                 p.form-title.mt-4 Logueate!
 
-                .row.input-container
+                .row.input-container.mt-4
                     .col-12
                         .form-floating
                             input.form-control#emailInput(placeholder="Ingrese el correo electrónico" type="email")
@@ -26,8 +26,8 @@ block content
                         .form-floating
                             input.form-control#passwordInput(placeholder="Ingrese la contraseña" type="password")
                             label(for="passwordInput") Contraseña
-                            
-                button.submit(type="submit") ENVIAR
+
+                button.submit.mt-2(type="submit") ENVIAR
                 p.signup-link.mt-4
                     | ¿No tenes una cuenta?
                     a(href="/auth/view/register").mx-2 Registrate
