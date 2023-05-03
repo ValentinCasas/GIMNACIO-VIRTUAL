@@ -23,7 +23,8 @@ module.exports = (sequelize, DataTypes) => {
     contraseña: DataTypes.STRING,
     fechaRegistro: DataTypes.DATE,
     nivelEntrenamiento: DataTypes.INTEGER,
-    objetivosEntrenamiento: DataTypes.STRING
+    objetivosEntrenamiento: DataTypes.STRING,
+    imagenPerfil: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Usuario',
