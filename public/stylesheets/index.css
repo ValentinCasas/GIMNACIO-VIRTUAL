@@ -1,5 +1,5 @@
 :root {
-    --color-amarillo-global: #ffd300;
+    --color-amarillo-global: #ffc107;
     --color-grey-card:rgba(31, 31, 31, .87);
 }
 
@@ -53,6 +53,14 @@ h1 {
     position: sticky;
     left: 50px;
     top: 25%;
+    padding: 20px;
+}
+
+
+#contenido .left-column-carrousel{
+    position: sticky;
+    left: 50px;
+    top: 5%;
     padding: 20px;
 }
 
@@ -124,8 +132,6 @@ h1 {
     width: 100vw;
     padding:10%;
 }
-
-
 
 
 

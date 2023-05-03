@@ -10,13 +10,15 @@ block content
     link(rel='stylesheet' href='/index.css')
     link(rel='stylesheet' href='/cards.css')
 
+    script(src="/carrousel-splide.js" defer)
+    link(rel='stylesheet' href='/carrousel-splide.css')
+
   body
 
     a(href="#contenido" id="flecha")
       ion-icon(name="chevron-down-outline")
       ion-icon(name="chevron-down-outline")
       ion-icon(name="chevron-down-outline")
-
 
     div.img-principal.d-flex
 
@@ -32,7 +34,7 @@ block content
         .col-sm-12.col-md-6.col-lg-4
           .left-column
             h3.text-white.fs-5.fs-md-5 TU MEMBRESÍA
-            h1.text-white.fs-4.fs-md-4 A OTRO NIVEL 
+            h1.text-warning.fs-4.fs-md-4 A OTRO NIVEL 
             p.fs-4.fs-md-4 Todo lo que necesitas para acceder a un mundo de deporte, salud y bienestar con +300 centros deportivos en todo el país
             a.btn(href='#') Asociate
 
@@ -100,6 +102,44 @@ block content
 
                     a.button(href="#") Ver Sedes Total
 
+    //seccion carrousel
+
+    section#contenido
+      .row.d-flex.justify-content-between
+        .col-sm-12.col-md-7.col-lg-7
+          .left-column-carrousel
+            div#contain-main-slider.col-lg-12.col-md-12.col-sm-12.col-xs-12.py-5
+              section#main-slider.splide(aria-label="My Awesome Gallery")
+                div.splide__track
+                  ul.splide__list
+                    li.splide__slide
+                      img(src=`/imagenes-gym/img-material/mancuerna1.jpg` alt="Descripción de la imagen")
+                    li.splide__slide
+                      img(src=`/imagenes-gym/img-material/mancuerna2.jpeg` alt="Descripción de la imagen")
+                    li.splide__slide
+                      img(src=`/imagenes-gym/img-gym/gym1.jpg` alt="Descripción de la imagen")
+                    li.splide__slide
+                      img(src=`/imagenes-gym/img-gym/gym2.jpg` alt="Descripción de la imagen")  
+
+
+                  ul#thumbnails.thumbnails
+                    li.thumbnail 
+                      img(src=`/imagenes-gym/img-material/mancuerna1.jpg` alt="Descripción de la imagen")    
+                    li.thumbnail 
+                      img(src=`/imagenes-gym/img-material/mancuerna2.jpeg` alt="Descripción de la imagen")
+                    li.thumbnail 
+                      img(src=`/imagenes-gym/img-gym/gym1.jpg` alt="Descripción de la imagen")
+                    li.thumbnail 
+                      img(src=`/imagenes-gym/img-gym/gym1.jpg` alt="Descripción de la imagen")            
+
+        .col-sm-12.col-md-5.col-lg-5
+          .right-column
+            .cards
+              each num in [1,2,3]
+                .card
+                  img(src=`/imagenes-gym/img-gym/gym${num}.jpg` alt="Descripción de la imagen")
+                  p.m-0 Encontrá tu espacio más cercano para mantenerte activo y saludable.
+                  a.text-warning Enlace amarillo
 
 
 
