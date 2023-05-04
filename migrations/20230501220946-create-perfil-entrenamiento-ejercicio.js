@@ -1,28 +1,34 @@
 'use strict';
-/** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('PerfilEntrenamientoEjercicios', {
+  up: async (queryInterface, Sequelize) => {
+    await queryInterface.createTable('PerfilDeEntrenamiento-Ejercicios', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      id: {
-        type: Sequelize.INTEGER
-      },
-      createdAt: {
+      idPerfilDeEntrenamiento: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'PerfilDeEntrenamientos',
+          key: 'id'
+        },
+        onDelete: 'CASCADE'
       },
-      updatedAt: {
+      idEjercicio: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Ejercicios',
+          key: 'id'
+        },
+        onDelete: 'CASCADE'
       }
     });
   },
-  async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('PerfilEntrenamientoEjercicios');
+  down: async (queryInterface, Sequelize) => {
+    await queryInterface.dropTable('PerfilDeEntrenamiento-Ejercicios');
   }
 };
