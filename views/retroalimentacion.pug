@@ -39,8 +39,8 @@ block content
                                         div.dropdown
                                             button.btn.btn-link.dropdown-toggle(type='button' id='options' data-bs-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
                                             div.dropdown-menu.dropdown-menu-right(aria-labelledby='options')
-                                                a.dropdown-item(href=``) Edit
-                                                a.dropdown-item(href=`/retroalimentacion/delete/${retroalimentacion.id}`) Delete
+                                                a.dropdown-item#editar(data-id=retroalimentacion.id) Editar
+                                                a.dropdown-item(href=`/retroalimentacion/delete/${retroalimentacion.id}`) Borrar
                             div.card-body.p-3
                                 p.card-text #{retroalimentacion.descripcion}
                             div.card-footer.border-0
@@ -67,6 +67,60 @@ block content
                     hr#separador(class="my-4")
 
 
+            //modal edit
+            div(class="modal-edit d-none d-flex justify-content-center")
+                div(class="modal-edit-content")
+                    ion-icon(name="close-circle" class="modal-edit-close ")
+                    h2 Editar
+
+                    form#retroalimentacion-form-edit.form.col.col-xs-12.col-sm-12.col-md-12.col-lg-12(action=`/retroalimentacion/editar/` method="post")
+
+                        .row.input-container.mt-4
+                            .col-12
+                                .form-floating
+                                    textarea#descripcion.form-control(name="retroalimentacion" placeholder="Ingrese el correo electrónico" rows="4" style="height: 250px; max-height: 300px;")
+                                    label(for="retroalimentacion") Retroalimentacion
+
+                        button.submit.mt-3(type="submit") ACTUALIZAR 
+
+
+    script.
+        $('.dropdown-item').click(function() {
+            // Mostramos el modal-edit
+            $('.modal-edit').removeClass('d-none');
+
+            // Evitamos que el click se propague al contenedor del modal
+            $('.modal-edit-content').click(function(event) {
+                event.stopPropagation();
+            });
+
+            // Agregamos la acción al formulario de edición
+            const retroalimentacionId = $(this).attr('data-id');
+            $('#retroalimentacion-form-edit').attr('action', `/retroalimentacion/editar/${retroalimentacionId}`);
+        });
+
+        // Cerrar modal al hacer click en la x
+        $('.modal-edit-close').click(function() {
+            $('.modal-edit').addClass('d-none');
+        });
+
+        // Cerrar modal al hacer click fuera del modal
+        $('.modal-edit').click(function(event) {
+            if ($(event.target).hasClass('modal-edit')) {
+                $(this).addClass('d-none');
+            }
+        });
+
+
+        const botonEditar = document.getElementById('editar');
+
+        botonEditar.addEventListener('click', async function() {
+            const retroalimentacionId = 1; // Reemplaza con el ID de la retroalimentación deseada
+            const response = await fetch(`/retroalimentacion/${retroalimentacionId}`);
+            const data = await response.json();
+            const descripcion = data.descripcion;
+            document.getElementById('descripcion').value = descripcion;
+        });
 
 
 

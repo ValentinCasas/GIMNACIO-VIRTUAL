@@ -55,9 +55,6 @@ exports.votar = async function (req, res) {
     res.redirect("/retroalimentacion/view");
 };
 
-
-
-
 exports.borrarRetroalimentacion = async function (req, res) {
     const { retroId } = req.params;
 
@@ -72,8 +69,18 @@ exports.obtenerRetroalimentacion = function (req, res) {
 
 };
 
-exports.actualizarRetroalimentacion = function (req, res) {
-
-};
+exports.actualizarRetroalimentacion = async function (req, res) {
+    const { retroId } = req.params;
+    const { retroalimentacion } = req.body;
+  
+    await Retroalimentacion.update({
+      descripcion: retroalimentacion,
+    }, {
+      where: { id: retroId }
+    });
+  
+    res.redirect("/retroalimentacion/view");
+  };
+  
 
 
