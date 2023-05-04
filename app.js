@@ -46,6 +46,12 @@ app.use(methodOverride("_method"));
 app.use(upload({ limits: { fileSize: 1024 * 1024 } }));
 app.use(cookieParser());
 
+//middlewarre que añade isLoggedIn a res.locals
+app.use(function(req, res, next) {
+  res.locals.isLoggedIn = req.session.isLoggedIn || false;
+  next();
+});
+
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
 app.use('/detalleRutina', detalleRutinaRouter);

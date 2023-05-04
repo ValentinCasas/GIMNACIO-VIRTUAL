@@ -32,13 +32,24 @@ html
           ul.navbar-nav.ms-auto
             li.nav-item.mx-3
               a.nav-link.active(href="/") Inicio
+
             li.nav-item.mx-3
-              a.nav-link(href="#") Acerca de
+              a.nav-link(href="/retroalimentacion/view") Retroalimentacion
+
+            if locals.isLoggedIn 
+              div.nav-item.dropdown
+                a.nav-link.dropdown-toggle(href="#" role="button" id="dropdown1" data-bs-toggle="dropdown" aria-expanded="false")
+                  | Acerca de
+                ul.dropdown-menu.dropdown-menu-end(aria-labelledby="dropdown1")
+                  li
+                    a.dropdown-item(href="/retroalimentacion/view") Retroalimentacion
+
+
             li.nav-item.mx-3
               a.nav-link(href="#") Contacto
             li.nav-item.dropdown.mx-3
-              a.nav-link.dropdown-toggle(href="#" role="button" id="dropdown" data-bs-toggle="dropdown" aria-expanded="false") Sesión
-              ul.dropdown-menu.dropdown-menu-end(aria-labelledby="dropdown")
+              a.nav-link.dropdown-toggle(href="#" role="button" id="dropdown2" data-bs-toggle="dropdown" aria-expanded="false") Sesión
+              ul.dropdown-menu.dropdown-menu-end(aria-labelledby="dropdown2")
                 li
                   a.dropdown-item(href="/auth/view/login") Loguearse
                 li

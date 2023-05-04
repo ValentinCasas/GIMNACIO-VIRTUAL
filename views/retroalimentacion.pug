@@ -1,0 +1,76 @@
+extends layout
+
+block content
+
+    head
+        title FeedBack
+
+        link(rel='stylesheet' href='/retroalimentacion.css')
+
+    body
+
+        .row.section
+            section#form-retroalimentacion.p-4.col-sm-12.col-md-6.col-lg-6
+
+                form#retroalimentacion-form.col.col-xs-12.col-sm-12.col-md-12.col-lg-12(action="/retroalimentacion/crear" method="post")
+
+                    p.form-title.mt-4.text-white Feedback
+
+                    .row.input-container.mt-4
+                        .col-12
+                            .form-floating
+                                textarea.form-control#emailInput(name="retroalimentacion" placeholder="Ingrese el correo electrónico" rows="4" style="height: 250px; max-height: 300px;")
+                                label(for="retroalimentacion") Retroalimentacion
+
+                    button.submit.mt-3(type="submit") ENVIAR 
+
+
+            section#retroalimentaciones.p-4.col-sm-12.col-md-6.col-lg-6
+                hr#separador(class="mb-4 mt-0")
+                each retroalimentacion in Retroalimentacion
+                    div.container.mb-4
+                        div.card.border-0
+                            div.card-header.border-0
+                                div.d-flex.align-items-center.justify-content-between
+                                    div.d-flex.align-items-center
+                                        img.rounded-circle.mx-2(src=`/${retroalimentacion.Usuario.imagenPerfil}` alt="Descripción de la imagen" width='40' height='40')
+                                        h5.card-title.ml-2.mb-0 #{retroalimentacion.Usuario.nombre}
+                                    if req.sessionID == retroalimentacion.Usuario.sessionId
+                                        div.dropdown
+                                            button.btn.btn-link.dropdown-toggle(type='button' id='options' data-bs-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
+                                            div.dropdown-menu.dropdown-menu-right(aria-labelledby='options')
+                                                a.dropdown-item(href=``) Edit
+                                                a.dropdown-item(href=`/retroalimentacion/delete/${retroalimentacion.id}`) Delete
+                            div.card-body.p-3
+                                p.card-text #{retroalimentacion.descripcion}
+                            div.card-footer.border-0
+                                div.d-flex.align-items-center.justify-content-between
+                                    div.d-flex.align-items-center
+                                        i.ion-clock.mr-1.text-info.mx-1
+                                        span.text-muted #{retroalimentacion.fechaRetroalimentacion.toLocaleDateString()}
+
+                                    div.d-flex.align-items-center
+                                        a(href=`/retroalimentacion/voto/${req.sessionID}/${retroalimentacion.id}`).text-decoration-none 
+                                            i.ion-ios-location.mr-1.text-secondary.mx-1
+                                            span.text-muted #{Votos.filter(v => v.idRetroalimentacion === retroalimentacion.id).length}
+
+                                    div.d-flex.justify-content-between.align-items-center.mt-3
+                                        div.viewer
+                                            each voto in Votos.filter(v => v.idRetroalimentacion === retroalimentacion.id).slice(0, 3)
+                                                span.bg-primary.rounded-circle.d-flex.align-items-center.justify-content-center
+                                                    img.rounded-circle(src=`/${voto.Usuario.imagenPerfil}` alt="Profile Picture" width="35" height="35")
+                                            - const numVotos = Votos.filter(v => v.idRetroalimentacion === retroalimentacion.id).length - 3;
+                                                if numVotos > 0
+                                                    span.bg-info.text-white.rounded-circle.d-flex.align-items-center.justify-content-center
+                                                        | +#{numVotos}
+
+                    hr#separador(class="my-4")
+
+
+
+
+
+
+
+
+

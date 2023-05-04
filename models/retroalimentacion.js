@@ -10,14 +10,23 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
+
       // Relación muchos a uno con Usuario
       this.belongsTo(models.Usuario, { foreignKey: 'idUsuario' });
+
+      this.hasMany(models.votosRetroalimentacion, { foreignKey: 'idRetroalimentacion' });
     }
     
   }
   Retroalimentacion.init({
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+    },    
     idUsuario: DataTypes.INTEGER,
-    fechaRetroalimentacion: DataTypes.DATE
+    fechaRetroalimentacion: DataTypes.DATE,
+    descripcion: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Retroalimentacion',

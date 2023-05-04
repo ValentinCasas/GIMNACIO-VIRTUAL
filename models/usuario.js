@@ -14,10 +14,17 @@ module.exports = (sequelize, DataTypes) => {
       this.hasMany(models.PerfilDeEntrenamiento, { foreignKey: 'idUsuario' });
       // Relación uno a muchos con Progreso
       this.hasMany(models.Progreso, { foreignKey: 'idUsuario' });
+
+      this.hasMany(models.votosRetroalimentacion, { foreignKey: 'idUsuario' });
     }
     
   }
   Usuario.init({
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+    },
     nombre: DataTypes.STRING,
     correoElectronico: DataTypes.STRING,
     contraseña: DataTypes.STRING,
