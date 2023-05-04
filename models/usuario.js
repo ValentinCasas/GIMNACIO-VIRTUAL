@@ -32,7 +32,8 @@ module.exports = (sequelize, DataTypes) => {
     nivelEntrenamiento: DataTypes.STRING,
     objetivosEntrenamiento: DataTypes.STRING,
     imagenPerfil: DataTypes.STRING,
-    sessionId: DataTypes.STRING
+    sessionId: DataTypes.STRING,
+    rol: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Usuario',

@@ -59,7 +59,7 @@ app.use('/ejercicio', ejercicioRouter);
 app.use('/perfilDeEntrenamiento', perfilDeEntrenamientoRouter);
 app.use('/progreso', progresoRouter);
 app.use('/retroalimentacion', retroalimentacionRouter);
-app.use('/rutina', rutinaRouter);
+app.use('/rutinas', rutinaRouter);
 app.use('/usuario', usuarioRouter);
 
 

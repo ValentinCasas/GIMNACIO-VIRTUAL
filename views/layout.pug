@@ -34,7 +34,7 @@ html
               a.nav-link.active(href="/") Inicio
 
             li.nav-item.mx-3
-              a.nav-link(href="/retroalimentacion/view") Retroalimentacion
+              a.nav-link(href="/rutinas/view") Rutinas  
 
             if locals.isLoggedIn 
               div.nav-item.dropdown
@@ -50,10 +50,14 @@ html
             li.nav-item.dropdown.mx-3
               a.nav-link.dropdown-toggle(href="#" role="button" id="dropdown2" data-bs-toggle="dropdown" aria-expanded="false") Sesión
               ul.dropdown-menu.dropdown-menu-end(aria-labelledby="dropdown2")
-                li
-                  a.dropdown-item(href="/auth/view/login") Loguearse
-                li
-                  a.dropdown-item(href="/auth/view/register") Registrarse
+                if !locals.isLoggedIn 
+                  li
+                    a.dropdown-item(href="/auth/view/login") Loguearse
+                if !locals.isLoggedIn 
+                  li
+                    a.dropdown-item(href="/auth/view/register") Registrarse
+                else  
+                  a.dropdown-item(href="/auth/view/register") Crear cuenta nueva
                 li
                   hr.dropdown-divider
                 li

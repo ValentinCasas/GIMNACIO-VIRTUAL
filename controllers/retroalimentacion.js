@@ -11,20 +11,23 @@ exports.viewRetroalimentacion = async function (req, res) {
 }
 
 exports.crearRetroalimentacion = async function (req, res) {
-    const { retroalimentacion } = req.body;
+    const { retroalimentacion, idUsuario } = req.body;
 
-    const usuario = await Usuario.findAll({ where: { sessionId: req.sessionID } })
+    const usuario = await Usuario.findAll({ where: { sessionId: idUsuario } })
+
+    let nuevaRetroalimentacion;
 
     if (retroalimentacion != "") {
-        await Retroalimentacion.create({
+        nuevaRetroalimentacion = await Retroalimentacion.create({
             descripcion: retroalimentacion,
             fechaRetroalimentacion: new Date(),
             idUsuario: usuario[0].id,
         });
     }
 
-    res.redirect("/retroalimentacion/view");
+    res.json({ nuevaRetroalimentacion });
 }
+
 exports.votar = async function (req, res) {
     const { idUsuario, idRetroalimentacion } = req.params;
     const usuario = await Usuario.findAll({ where: { sessionId: req.sessionID } })
@@ -57,12 +60,15 @@ exports.votar = async function (req, res) {
 
 exports.borrarRetroalimentacion = async function (req, res) {
     const { retroId } = req.params;
+    let idRetroalDelete = await Retroalimentacion.findByPk(retroId);
+    idRetroalDelete = idRetroalDelete.id;
 
     await votosRetroalimentacion.destroy({ where: { idRetroalimentacion: retroId } });
     await Retroalimentacion.destroy({ where: { id: retroId } });
 
-    res.redirect("/retroalimentacion/view");
+    res.json({ idRetroalDelete });
 };
+
 
 
 exports.obtenerRetroalimentacion = function (req, res) {
@@ -72,15 +78,15 @@ exports.obtenerRetroalimentacion = function (req, res) {
 exports.actualizarRetroalimentacion = async function (req, res) {
     const { retroId } = req.params;
     const { retroalimentacion } = req.body;
-  
+
     await Retroalimentacion.update({
-      descripcion: retroalimentacion,
+        descripcion: retroalimentacion,
     }, {
-      where: { id: retroId }
+        where: { id: retroId }
     });
-  
+
     res.redirect("/retroalimentacion/view");
-  };
-  
+};
+
 
 

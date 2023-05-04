@@ -55,6 +55,15 @@ block content
 
                 .row.input-container 
 
+                if (rol === 'administrador') 
+                    .row.input-container
+                        .col-12
+                            .form-floating
+                                select.form-select#trainingLevelSelect(name="rol")
+                                    option.form-select(value='1') Cliente
+                                    option.form-select(value='3') Empleado 
+                                    option.form-select(value='2') ADMINISTRADOR
+                                label(for="rol") Rol
 
                 .container
                     .header

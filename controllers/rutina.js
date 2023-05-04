@@ -1,4 +1,9 @@
 
+exports.viewRutinas = function (req, res) {
+    
+    res.render("rutinas");
+};
+
 exports.obtenerRutina = function (req, res) {
 
 };
