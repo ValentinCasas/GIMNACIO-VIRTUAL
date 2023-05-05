@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
       this.hasMany(models.PerfilDeEntrenamiento, { foreignKey: 'idUsuario' });
       // Relación uno a muchos con Progreso
       this.hasMany(models.Progreso, { foreignKey: 'idUsuario' });
-
+      this.hasMany(models.ListaEjercicios, { foreignKey: 'idUsuario' });
       this.hasMany(models.votosRetroalimentacion, { foreignKey: 'idUsuario' });
     }
     

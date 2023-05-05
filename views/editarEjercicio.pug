@@ -1,0 +1,47 @@
+extends layout
+
+block content
+
+    head
+        title Editar
+        link(rel='stylesheet' href='/login.css')
+        link(rel='stylesheet' href='/register.css')
+        script(src="/register.js" defer)
+
+    body
+
+
+        section#form.d-flex.justify-content-start.align-item-start
+            //formularo de registro
+            form.form.col.col-xs-12.col-sm-12.col-md-6.col-lg-6(action=`/ejercicio/actualizar` method="post")
+                p.form-title.mt-4 Edicion de ejercicio
+
+                input(type="hidden" name="id" value=`${Ejercicio.id}`)
+
+                .row.input-container
+                    .col-lg-12.col-md-12.col-sm-12.col-xs-12
+                        .form-floating
+                            input.form-control#nameInput(name="nombre" value=`${Ejercicio.nombre}` placeholder="Ingrese el nombre" type="text")
+                            label(for="nameInput") Nombre
+                    .col-lg-12.col-md-12.col-sm-12.col-xs-12.mb-2
+                        .form-floating
+                            textarea#descripcion.form-control(name="descripcion" value=`${Ejercicio.descripcion}` placeholder="Ingrese la descripcion" rows="4" style="height: 250px; max-height: 300px;")
+                                | #{Ejercicio.descripcion}
+                            label(for="descripcion") Descripcion
+                    .col-lg-12.col-md-12.col-sm-12.col-xs-12
+                        .form-floating
+                            select.form-select#trainingLevelSelect(name="nivelDificultad" )
+                                option.form-select(value='1') Bajo
+                                option.form-select(value='2') Intermedio 
+                                option.form-select(value='3') Alto
+                            label(for="trainingLevelSelect") Nivel de dificultad
+                    .col-lg-12.col-md-12.col-sm-12.col-xs-12
+                        .form-floating
+                            input.form-control#nameInput(name="grupoMuscular" value=`${Ejercicio.grupoMuscular}` placeholder="Ingrese el grupo muscular" type="text")
+                            label(for="nameInput") Grupo muscular                        
+
+                button.submit.mt-4.mb-4(type="submit") ACTUALIZAR
+
+
+            //imagen 
+            div.img-login.col-xs-12.col-sm-12.col-md-6.col-lg-6

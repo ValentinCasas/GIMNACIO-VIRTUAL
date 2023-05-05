@@ -1,0 +1,69 @@
+<!DOCTYPE html><html><head><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous"><link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"><script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script><script src="https://code.jquery.com/jquery-3.6.0.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script><!--grid--><script src="https://cdn.jsdelivr.net/npm/@splidejs/splide-extension-grid@0.4.1/dist/js/splide-extension-grid.min.js"> </script><link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" rel="stylesheet"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css"><script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script><link rel="stylesheet" href="/todo.css"></head><body><nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top"><div class="container-fluid"><button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button><a class="navbar-brand" href="/">GYM</a><div class="collapse navbar-collapse" id="navbar"><ul class="navbar-nav ms-auto"><li class="nav-item mx-3"><a class="nav-link active" href="/">Inicio</a></li><li class="nav-item mx-3"><a class="nav-link" href="/rutinas/view">Rutinas  </a></li><li><a class="nav-link" href="/ejercicio/listaEjercicios/view">Lista   </a></li><li><a class="nav-link" href="/ejercicio/view">ejercicios    </a></li><li class="nav-item mx-3"><a class="nav-link" href="#">Contacto</a></li><li class="nav-item dropdown mx-3"><a class="nav-link dropdown-toggle" href="#" role="button" id="dropdown2" data-bs-toggle="dropdown" aria-expanded="false">Sesión</a><ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown2"><li><a class="dropdown-item" href="/auth/view/login">Loguearse</a></li><li><a class="dropdown-item" href="/auth/view/register">Registrarse</a></li><li><hr class="dropdown-divider"></li><li><a class="dropdown-item" href="/auth/logout">Cerrar sesión</a></li></ul></li></ul></div></div></nav><head><title>Enlistar</title><link rel="stylesheet" href="/login.css"><link rel="stylesheet" href="/register.css"><script src="/register.js" defer></script></head><body><section class="d-flex justify-content-start align-item-start" id="form"><!--formularo de registro--><form class="form col col-xs-12 col-sm-12 col-md-6 col-lg-6" action="/ejercicio/listaEjercicios/create" method="post" enctype="multipart/form-data"><p class="form-title mt-4">Arma tu propia lista!</p><div class="row input-container"><div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><div class="form-floating"><input class="form-control" id="nameInput" name="titulo" placeholder="Ingrese el titulo" type="text"><label for="nameInput">Titulo</label></div></div></div><div class="container"><div class="header"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M7 10V9C7 6.23858 9.23858 4 12 4C14.7614 4 17 6.23858 17 9V10C19.2091 10 21 11.7909 21 14C21 15.4806 20.1956 16.8084 19 17.5M7 10C4.79086 10 3 11.7909 3 14C3 15.4806 3.8044 16.8084 5 17.5M7 10C7.43285 10 7.84965 10.0688 8.24006 10.1959" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></g></svg><p>Ingresa foto de lista!</p></div><label class="footer" for="file"><svg fill="#000000" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M15.331 6H8.5v20h15V14.154h-8.169"></path><path d="M18.153 6h-.009v5.342H23.5v-.002"></path></g></svg><p>Nada seleccionado</p><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M5.16565 10.1534C5.07629 8.99181 5.99473 8 7.15975 8H16.8402C18.0053 8 18.9237 8.9918 18.8344 10.1534L18.142 19.1534C18.0619 20.1954 17.193 21 16.1479 21H7.85206C6.80699 21 5.93811 20.1954 5.85795 19.1534L5.16565 10.1534Z" stroke="#000000" stroke-width="2"></path><path d="M19.5 5H4.5" stroke="#000000" stroke-width="2" stroke-linecap="round"></path><path d="M10 3C10 2.44772 10.4477 2 11 2H13C13.5523 2 14 2.44772 14 3V5H10V3Z" stroke="#000000" stroke-width="2"></path></g></svg></label><input id="file" type="file" name="imagenListaEjercicios"></div><button class="submit mt-4" type="submit">CREAR</button></form><!--imagen --><div class="img-login col-xs-12 col-sm-12 col-md-6 col-lg-6"></div></section></body></body><script>$(document).ready(function() {
+  // Obtener el elemento activo inicial
+  var activeEl = $('.nav-link.active');
+
+  // Agregar la clase 'active' al elemento activo inicial
+  activeEl.addClass('active');
+
+  // Manejar el clic en un elemento de la barra de navegación
+  $('.nav-link').click(function() {
+    // Obtener el elemento activo actual
+    var currentActiveEl = $('.nav-link.active');
+
+    // Remover la clase 'active' del elemento activo actual
+    currentActiveEl.removeClass('active');
+
+    // Agregar la clase 'active' al elemento clickeado
+    $(this).addClass('active');
+  });
+});
+
+/* 3 flechas en movimiento */
+
+$(document).ready(function() {
+  var lastScrollTop = 0;
+  var arrowVisible = true;
+
+  // función para mostrar u ocultar la flecha
+  function toggleArrow() {
+    if ($(window).scrollTop() == 0) {
+      // mostrar flecha si está en la parte superior de la página
+      $('#flecha').fadeIn();
+      arrowVisible = true;
+    } else if (arrowVisible) {
+      // ocultar flecha si no está en la parte superior de la página
+      $('#flecha').fadeOut();
+      arrowVisible = false;
+    }
+  }
+
+  // mostrar flecha inicialmente
+  toggleArrow();
+
+  // controlar la aparición y desaparición de la flecha
+  $(window).scroll(function() {
+    var scrollTop = $(this).scrollTop();
+    if (scrollTop > lastScrollTop) {
+      // scroll hacia abajo
+      if (arrowVisible) {
+        $('#flecha').fadeOut();
+        arrowVisible = false;
+      }
+    } else {
+      // scroll hacia arriba
+      toggleArrow();
+    }
+    lastScrollTop = scrollTop;
+  });
+
+  // animación al hacer click en la flecha
+  $('#flecha').click(function() {
+    $('html, body').animate({
+      scrollTop: $('#contenido').offset().top
+    }, 1000);
+    $('#flecha').fadeOut();
+    arrowVisible = false;
+  });
+
+
+});</script></html>

@@ -1,0 +1,56 @@
+extends layout
+
+block content
+
+    head
+        title Enlistar
+        link(rel='stylesheet' href='/login.css')
+        link(rel='stylesheet' href='/register.css')
+        link(rel='stylesheet' href="enlistar.css")
+        script(src="/register.js" defer)
+
+    body
+
+
+        section#form.d-flex.justify-content-start.align-item-start
+            //formularo de registro
+            form.form.col.col-xs-12.col-sm-12.col-md-6.col-lg-6(action=`/ejercicio/enlistar` method="post")
+                p.form-title.mt-4 Arma tu propia lista!
+                p.form-title.mt-4 Ejercicio: #{Ejercicio.nombre}
+
+                input(type="hidden" value=`${ejercicioId}` name="ejercicioId")
+
+                .row.input-container
+                    .col-lg-12.col-md-12.col-sm-12.col-xs-12
+                        .form-floating
+                            select.form-select#trainingLevelSelect(name="idLista")
+                                each lista in Listas
+                                    option.form-select(value=`${lista.id}`, data-imagen=`${lista.imagenLista}`) #{lista.titulo}
+
+
+                            label(for="trainingLevelSelect") Seleccione una lista        
+
+                button.submit.mt-4(type="submit") CREAR
+
+                div.col-xs-12.col-sm-12.col-md-12.col-lg-12.mt-4.mb-4
+                    img#listaImagen(style='width: 100%; height: auto;') 
+
+
+            //imagen 
+            div.img-login.col-xs-12.col-sm-12.col-md-6.col-lg-6
+
+
+
+
+        script.
+            const select = $('#trainingLevelSelect');
+
+            select.on('change', function() {
+                const selectedOption = $(this).find('option:selected');
+                const imagen = selectedOption.data('imagen');
+                const img = $('#listaImagen');
+                img.attr('src',"/" + imagen);
+            });
+
+
+

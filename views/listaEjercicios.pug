@@ -17,15 +17,16 @@ block content
             .row.row-cols-1.row-cols-sm-2.row-cols-md-3.g-4
                 each listaEjercicios in ListaEjercicios  
                     .col
-                        .card.mb-3.me-sm-4.mx-auto
+                        .card(id=`tarjeta-${listaEjercicios.id}`).mb-3.me-sm-4.mx-auto
+
                             a.delete-icon(href=`/ejercicio/borrar/listaEjercicios/${listaEjercicios.id}`)
                                 ion-icon(name="close-sharp")
+                            a.ejercicio-link(href=`/ejercicio/listaEjercicios/${listaEjercicios.id}`)
                             .image 
                                 img(src=`/${listaEjercicios.imagenLista}` alt="Descripción de la imagen")
+                            span.title #{listaEjercicios.titulo}
+                            span.price #{listaEjercicios.fechaCreacion.toLocaleDateString()}
 
-                                span.title #{listaEjercicios.titulo}
-                                span.price #{listaEjercicios.fechaCreacion.toLocaleDateString()}
-    
 
 
         a(href="/ejercicio/listaEjercicios/view/create").button
@@ -36,6 +37,13 @@ block content
                     line(x1="12" y1="12" x2="5" y2="12")
                     line(x1="12" y1="12" x2="12" y2="19")
                     line(x1="12" y1="12" x2="12" y2="5")                               
+
+
+        script.
+            $('a.card-link').click(function() {
+                var listaEjerciciosId = $(this).closest('.col').attr('id').split('-')[1];
+                window.location.href = `/ejercicio/listaEjercicios/${listaEjerciciosId}`;
+            });
 
 
 

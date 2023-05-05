@@ -6,11 +6,16 @@ router.get('/listaEjercicios/view', ejercicioController.viewListaEjercicios);
 router.get('/listaEjercicios/view/create', ejercicioController.viewCrearListaEjercicios);
 router.post('/listaEjercicios/create', ejercicioController.crearListaEjercicios);
 router.get('/borrar/listaEjercicios/:listaEjerciciosId', ejercicioController.borrarListaEjercicios); 
+router.get('/listaEjercicios/:idLista', ejercicioController.viewListaParticular);
+router.get('/view/enlistar/:ejercicioId', ejercicioController.viewEnlistar);
+router.post('/enlistar', ejercicioController.enlistar);
 
-router.get('/obtener/:ejercicioId', ejercicioController.obtenerEjercicio); //obtener información de un ejercicio específico
+router.get('/view', ejercicioController.viewEjercicios);
+router.get('/view/crear', ejercicioController.viewCrearEjercicios);
+router.get('/obtener/:ejercicioId', ejercicioController.viewObtenerEjercicio); 
 router.post('/crear', ejercicioController.crearEjercicio);
-router.put('/actualizar/:ejercicioId', ejercicioController.actualizarEjercicio); //actualizar información de un ejercicio específico
-router.get('/borrar/:ejercicioId', ejercicioController.borrarEjercicio); //eliminar un ejercicio específico
+router.post('/actualizar', ejercicioController.actualizarEjercicio); 
+router.get('/borrar/:ejercicioId', ejercicioController.borrarEjercicio); 
 
 
 module.exports = router; 

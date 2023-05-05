@@ -37,7 +37,10 @@ html
               a.nav-link(href="/rutinas/view") Rutinas  
 
             li
-              a.nav-link(href="/ejercicio/listaEjercicios/view") Ejercicios   
+              a.nav-link(href="/ejercicio/listaEjercicios/view") Lista   
+
+            li
+              a.nav-link(href="/ejercicio/view") ejercicios    
 
             if locals.isLoggedIn 
               div.nav-item.dropdown
@@ -47,7 +50,9 @@ html
                   li
                     a.dropdown-item(href="/retroalimentacion/view") Retroalimentacion
                   li
-                    a.dropdown-item(href="/ejercicio/view") Ejercicios  
+                    a.dropdown-item(href="/ejercicio/listaEjercicios/view") Lista ejercicios  
+                  li
+                    a.dropdown-item(href="/ejercicio/view") ejercicios   
 
 
             li.nav-item.mx-3
