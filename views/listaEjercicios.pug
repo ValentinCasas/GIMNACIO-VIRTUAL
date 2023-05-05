@@ -1,0 +1,43 @@
+extends layout
+
+block content
+
+    head
+        title Ejercicios
+
+        link(rel='stylesheet' href='/ejercicios.css')
+
+        script(src="/carrousel-splide.js" defer)
+        link(rel='stylesheet' href='/carrousel-splide.css')
+
+    body
+
+
+        section.col.col-lg-12.col-md-12.p-5
+            .row.row-cols-1.row-cols-sm-2.row-cols-md-3.g-4
+                each listaEjercicios in ListaEjercicios  
+                    .col
+                        .card.mb-3.me-sm-4.mx-auto
+                            a.delete-icon(href=`/ejercicio/borrar/listaEjercicios/${listaEjercicios.id}`)
+                                ion-icon(name="close-sharp")
+                            .image 
+                                img(src=`/${listaEjercicios.imagenLista}` alt="Descripción de la imagen")
+
+                                span.title #{listaEjercicios.titulo}
+                                span.price #{listaEjercicios.fechaCreacion.toLocaleDateString()}
+    
+
+
+        a(href="/ejercicio/listaEjercicios/view/create").button
+            span.button__text Agregar
+            span.button__icon
+                svg.svg(width="24" viewBox="0 0 24 24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round")
+                    line(x1="12" y1="12" x2="19" y2="12")
+                    line(x1="12" y1="12" x2="5" y2="12")
+                    line(x1="12" y1="12" x2="12" y2="19")
+                    line(x1="12" y1="12" x2="12" y2="5")                               
+
+
+
+
+

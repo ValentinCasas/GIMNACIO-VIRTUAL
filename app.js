@@ -40,6 +40,7 @@ app.use(express.static(path.join(__dirname, 'public/javascripts')));
 app.use(express.static(path.join(__dirname, 'public/imagenes-gym/img-deportistas')));
 app.use(express.static(path.join(__dirname, 'public/imagenes-importantes')));
 app.use(express.static(path.join(__dirname, 'public/imagenes-perfil-usuario')));
+app.use(express.static(path.join(__dirname, 'public/imagenes-lista-ejercicios')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride("_method"));

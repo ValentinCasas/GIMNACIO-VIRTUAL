@@ -36,6 +36,9 @@ html
             li.nav-item.mx-3
               a.nav-link(href="/rutinas/view") Rutinas  
 
+            li
+              a.nav-link(href="/ejercicio/listaEjercicios/view") Ejercicios   
+
             if locals.isLoggedIn 
               div.nav-item.dropdown
                 a.nav-link.dropdown-toggle(href="#" role="button" id="dropdown1" data-bs-toggle="dropdown" aria-expanded="false")
@@ -43,6 +46,8 @@ html
                 ul.dropdown-menu.dropdown-menu-end(aria-labelledby="dropdown1")
                   li
                     a.dropdown-item(href="/retroalimentacion/view") Retroalimentacion
+                  li
+                    a.dropdown-item(href="/ejercicio/view") Ejercicios  
 
 
             li.nav-item.mx-3

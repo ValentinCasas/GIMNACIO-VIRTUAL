@@ -14,6 +14,9 @@ module.exports = (sequelize, DataTypes) => {
       this.belongsToMany(models.PerfilDeEntrenamiento, { through: models.PerfilEntrenamientoEjercicio, foreignKey: 'idEjercicio' });
       // Relación uno a muchos con DetalleRutina
       this.hasMany(models.DetalleRutina, { foreignKey: 'idEjercicio' });
+
+      this.belongsTo(models.ListaEjercicios, { foreignKey: 'idListaEjercicio' });
+
     }
     
   }
@@ -21,7 +24,8 @@ module.exports = (sequelize, DataTypes) => {
     nombre: DataTypes.STRING,
     descripcion: DataTypes.STRING,
     nivelDificultad: DataTypes.INTEGER,
-    grupoMuscular: DataTypes.STRING
+    grupoMuscular: DataTypes.STRING,
+    idListaEjercicio: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Ejercicio',

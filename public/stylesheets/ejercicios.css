@@ -1,0 +1,194 @@
+:root {
+  --color-amarillo-global: #ffc107;
+  --color-grey-card: rgba(20, 20, 20, 0.87);
+  --color-grayDark-background: #aaa7a7;
+}
+
+a{
+  text-decoration: none;
+}
+
+body {
+  background-color: #1f1f1f;
+  overflow-x: hidden;
+}
+
+section {
+  margin-top: 65px;
+  height: auto;
+}
+
+
+/* card */
+.card {
+  position: relative;
+  height: 20.5em;
+  box-shadow: 0px 1px 13px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 120ms;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ca9b0c;
+  padding-top: 0;
+  padding-left: 0;
+  padding-right: 0;
+
+  padding-bottom: 3.4em;
+}
+
+.card::after {
+  border-top: 1px solid black;
+  content: "Mi lista";
+  padding-top: 1.25em;
+  padding-left: 1.25em;
+  position: absolute;
+  left: 0;
+  bottom: -60px;
+  background: #ffc107;
+  color: #1a1919;
+  height: 80px;
+  width: 100%;
+  transition: all 80ms;
+  font-weight: 600;
+  text-transform: uppercase;
+  opacity: 0;
+}
+
+.card .title {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.9em;
+  position: absolute;
+  left: 0.625em;
+  bottom: 1.875em;
+  font-weight: 400;
+  color: #000;
+}
+
+.card .price {
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-size: 0.9em;
+  position: absolute;
+  left: 0.625em;
+  bottom: 0.625em;
+  color: #000;
+}
+
+.card:hover::after {
+  bottom: 0;
+  opacity: 1;
+}
+
+.card:active {
+  transform: scale(0.98);
+}
+
+.card:active::after {
+  content: "Entrando";
+  height: 4.125em;
+}
+
+.text {
+  max-width: 55px;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+}
+
+.image img {
+  width: 100%;
+  height: 100%;
+}
+
+
+
+/* boton agregar */
+.button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 150px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border: 1px solid rgb(153, 153, 30);
+  background-color: #ca9b0c;
+}
+
+.button, .button__icon, .button__text {
+  transition: all 0.3s;
+}
+
+.button .button__text {
+  transform: translateX(30px);
+  color: #fff;
+  font-weight: 600;
+}
+
+.button .button__icon {
+  position: absolute;
+  transform: translateX(109px);
+  height: 100%;
+  width: 39px;
+  background-color: #bb8f0c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button .svg {
+  width: 30px;
+  stroke: #fff;
+}
+
+.button:hover {
+  background: #bb8f0c;
+}
+
+.button:hover .button__text {
+  color: transparent;
+}
+
+.button:hover .button__icon {
+  width: 148px;
+  transform: translateX(0);
+}
+
+.button:active .button__icon {
+  background-color: #bb8f0c;
+}
+
+.button:active {
+  border: 1px solid #bb8f0c;
+}
+
+
+
+/* boton borrar */
+.delete-icon {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+  background-color: #da5e55;
+  color: #000000;
+  text-decoration: none;
+  font-size: 18px;
+  transition: transform 0.2s ease-in-out;
+  }
+  
+  .delete-icon:hover {
+  transform: scale(1.1);
+  }
+  
+  ion-icon {
+  font-size: 22px;
+  }
