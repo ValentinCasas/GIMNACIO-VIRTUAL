@@ -14,7 +14,6 @@ var isAutenticatedBD = require("./routes/auth").isAutenticatedBD;
 const authRouter = require('./routes/auth').router;
 const detalleRutinaRouter = require('./routes/detalleRutina')
 const ejercicioRouter = require('./routes/ejercicio')
-const perfilDeEntrenamientoRouter = require('./routes/perfilDeEntrenamiento')
 const progresoRouter = require('./routes/progreso')
 const retroalimentacionRouter = require('./routes/retroalimentacion')
 const rutinaRouter = require('./routes/rutina')
@@ -41,6 +40,7 @@ app.use(express.static(path.join(__dirname, 'public/imagenes-gym/img-deportistas
 app.use(express.static(path.join(__dirname, 'public/imagenes-importantes')));
 app.use(express.static(path.join(__dirname, 'public/imagenes-perfil-usuario')));
 app.use(express.static(path.join(__dirname, 'public/imagenes-lista-ejercicios')));
+app.use(express.static(path.join(__dirname, 'public/imagenes-rutinas')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride("_method"));
@@ -57,7 +57,6 @@ app.use('/', indexRouter);
 app.use('/auth', authRouter);
 app.use('/detalleRutina', detalleRutinaRouter);
 app.use('/ejercicio', ejercicioRouter);
-app.use('/perfilDeEntrenamiento', perfilDeEntrenamientoRouter);
 app.use('/progreso', progresoRouter);
 app.use('/retroalimentacion', retroalimentacionRouter);
 app.use('/rutinas', rutinaRouter);

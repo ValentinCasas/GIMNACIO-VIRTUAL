@@ -3,7 +3,7 @@ extends layout
 block content
 
     head
-        title Ejercicios
+        title Listas
 
         link(rel='stylesheet' href='/ejercicios.css')
 
@@ -13,20 +13,24 @@ block content
     body
 
 
-        section.col.col-lg-12.col-md-12.p-5
-            .row.row-cols-1.row-cols-sm-2.row-cols-md-3.g-4
-                each listaEjercicios in ListaEjercicios  
-                    .col
-                        .card(id=`tarjeta-${listaEjercicios.id}`).mb-3.me-sm-4.mx-auto
+        section.col.col-lg-12.col-md-12
+            .row
+                .col-xs-12.col-sm-12.col-md-6.col-lg-7.px-2#cards
+                    .row.justify-content-center
+                        each listaEjercicios in ListaEjercicios  
+                            .flip-card.mt-4.col-xs-12.col-sm-12.col-md-12.col-lg-7
+                                .card(id=`tarjeta-${listaEjercicios.id}`).mb-3.me-sm-4.mx-auto
 
-                            a.delete-icon(href=`/ejercicio/borrar/listaEjercicios/${listaEjercicios.id}`)
-                                ion-icon(name="close-sharp")
-                            a.ejercicio-link(href=`/ejercicio/listaEjercicios/${listaEjercicios.id}`)
-                            .image 
-                                img(src=`/${listaEjercicios.imagenLista}` alt="Descripción de la imagen")
-                            span.title #{listaEjercicios.titulo}
-                            span.price #{listaEjercicios.fechaCreacion.toLocaleDateString()}
+                                    a.delete-icon(href=`/ejercicio/borrar/listaEjercicios/${listaEjercicios.id}`)
+                                        ion-icon(name="trash-outline")
+                                    a.ejercicio-link(href=`/ejercicio/listaEjercicios/${listaEjercicios.id}`)
+                                    .image 
+                                        img(src=`/${listaEjercicios.imagenLista}` loading="lazy" alt="Descripción de la imagen")
+                                    .col.col-12.p-2.justify-content-center#tituloLista
+                                        span.title #{listaEjercicios.titulo}
+                                    span.price #{listaEjercicios.fechaCreacion.toLocaleDateString()}
 
+                .img.col-xs-12.col-sm-12.col-md-6.col-lg-5
 
 
         a(href="/ejercicio/listaEjercicios/view/create").button

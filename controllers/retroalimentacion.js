@@ -6,8 +6,9 @@ exports.viewRetroalimentacion = async function (req, res) {
     const usuarios = await Usuario.findAll();
     const retroalimentaciones = await Retroalimentacion.findAll({ include: Usuario });
     const votos = await votosRetroalimentacion.findAll({ include: [{ model: Usuario, }, { model: Retroalimentacion, },], });
+    const usuario = await Usuario.findAll({ where: { sessionId: req.sessionID } })
 
-    res.render("retroalimentacion", { Usuarios: usuarios, Retroalimentacion: retroalimentaciones.reverse(), Votos: votos, req: req });
+    res.render("retroalimentacion", { Usuarios: usuarios, Usuario:usuario ,Retroalimentacion: retroalimentaciones.reverse(), Votos: votos, req: req });
 }
 
 exports.crearRetroalimentacion = async function (req, res) {

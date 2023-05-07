@@ -12,7 +12,9 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       this.belongsToMany(models.Ejercicio, { through: models.listaEjercicio, foreignKey: 'idLista' });
+      this.belongsToMany(models.Rutina, { through: models.RutinaLista, foreignKey: 'idLista' });
       this.belongsTo(models.Usuario, { foreignKey: 'idUsuario' });
+
 
     }
   }
@@ -22,10 +24,10 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       autoIncrement: true,
     }, 
+    idUsuario: DataTypes.INTEGER,
     titulo: DataTypes.STRING,
     fechaCreacion: DataTypes.DATE,
-    imagenLista: DataTypes.STRING,
-    idUsuario: DataTypes.INTEGER
+    imagenLista: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'ListaEjercicios',

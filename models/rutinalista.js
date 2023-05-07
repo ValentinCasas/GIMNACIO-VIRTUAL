@@ -3,7 +3,7 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class votosRetroalimentacion extends Model {
+  class RutinaLista extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -11,23 +11,26 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      this.belongsTo(models.Rutina, { foreignKey: 'idRutina' });
+      this.belongsTo(models.ListaEjercicios, { foreignKey: 'idLista' });
       this.belongsTo(models.Usuario, { foreignKey: 'idUsuario' });
-      this.belongsTo(models.Retroalimentacion, { foreignKey: 'idRetroalimentacion' });
     }
+    
   }
-  votosRetroalimentacion.init({
+  RutinaLista.init({
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
-    },  
-    idUsuario: DataTypes.INTEGER,
-    idRetroalimentacion: DataTypes.INTEGER
+    },
+    idRutina: DataTypes.INTEGER,
+    idLista: DataTypes.INTEGER,
+    idUsuario: DataTypes.INTEGER
   }, {
     sequelize,
-    modelName: 'votosRetroalimentacion',
-    tableName: 'votosRetroalimentacion',
+    modelName: 'RutinaLista',
+    tableName: 'Rutina-lista',
     timestamps: false,
   });
-  return votosRetroalimentacion;
+  return RutinaLista;
 };

@@ -4,12 +4,97 @@ block content
 
     head
         title Ejercicios
+
+        link(rel='stylesheet' href='/checkbox.css')
         link(rel='stylesheet' href='/login.css')
         link(rel='stylesheet' href='/register.css')
-        script(src="/register.js" defer)
+        link(rel='stylesheet' href='/ejercicios.css')
 
     body
 
 
-        section#form.d-flex.justify-content-start.align-item-start
-            p ejercicios en particular
+        section.col.col-lg-12.col-md-12
+            .row
+
+                .formulario.col-xs-12.col-sm-12.col-md-6.col-lg-5.p-3
+                    form.form.col.col-xs-12.col-sm-12.col-md-12.col-lg-12(action="/ejercicio/agregar-ejercicios-a-lista" method="POST")
+                        input(type="hidden" name="idLista" value=listaId)
+                        each ejercicio in Ejercicios
+                            div.m-2.p-2#contenedor-checkbox
+                                label(class="cyberpunk-checkbox-label")
+                                    input(class="cyberpunk-checkbox" name="ejerciciosSeleccionados", value=ejercicio.id type="checkbox")
+                                |   #{ejercicio.nombre}
+                        button.submit.mt-4.mb-4(type="submit") Agregar ejercicio a la lista    
+
+
+                .col-xs-12.col-sm-12.col-md-6.col-lg-7.px-2#cards
+                    .row.justify-content-center
+                        each lista in ListaParticular
+                            .flip-card.mt-4.col-xs-12.col-sm-12.col-md-12.col-lg-7(id=`ejercicio-${lista.Ejercicio.id}`)
+                                if Usuario[0].rol != "cliente"
+                                    a.delete-icon-lista(id=`borrar-ejercicio-${lista.Ejercicio.id}` href=`/ejercicio/borrar/${lista.Ejercicio.id}`)
+                                        ion-icon(name="trash-sharp")
+                                .flip-card-inner
+                                    .flip-card-front
+
+                                        if Usuario[0].rol != "cliente"
+                                            a.ejercicio-link(href=`/ejercicio/obtener/${lista.Ejercicio.id}`) 
+
+                                        p.title #{lista.Ejercicio.nombre}
+                                        p #{lista.Ejercicio.grupoMuscular}
+                                        p #{lista.Ejercicio.nivelDificultad}
+                                    .flip-card-back.p-4
+                                        if Usuario[0].rol != "cliente" 
+                                            a.ejercicio-link(href=`/ejercicio/obtener/${lista.Ejercicio.id}`)     
+                                        p #{lista.Ejercicio.descripcion}
+
+                                a.agregar-icon-lista.desenlistar-ejercicio(href=`/ejercicio/desenlistar/${lista.Ejercicio.id}/${ListaParticular[0].idLista}`).mb-4
+                                    ion-icon(name="backspace-outline")    
+
+
+
+
+        if Usuario[0].rol != "cliente" 
+            a(href="/ejercicio/view/crear").button
+                span.button__text Crear
+                span.button__icon
+                    svg.svg(width="24" viewBox="0 0 24 24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round")
+                        line(x1="12" y1="12" x2="19" y2="12")
+                        line(x1="12" y1="12" x2="5" y2="12")
+                        line(x1="12" y1="12" x2="12" y2="19")
+                        line(x1="12" y1="12" x2="12" y2="5")                               
+
+
+        script.
+            $('a.card-link').click(function() {
+                var listaEjerciciosId = $(this).closest('.col').attr('id').split('-')[1];
+                window.location.href = `/ejercicio/obtener/${listaEjerciciosId}`;
+            });
+
+
+            $(document).on('click', 'a.desenlistar-ejercicio', function(e) {
+                e.preventDefault();
+
+                var ejercicioCard = $(this).closest('.ejercicio-card'); // Encuentra el div del ejercicio correspondiente
+                var url = $(this).attr('href');
+
+                $.ajax({
+                    url: url,
+                    type: 'DELETE',
+                    success: function(data) {
+                        // Encuentra el div del ejercicio correspondiente usando el ID del ejercicio eliminado
+                        var ejercicioCard = $('#ejercicio-' + data.ejercicioId);
+                        ejercicioCard.remove(); // Elimina el div del ejercicio correspondiente
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        console.log('Error al borrar ejercicio:', errorThrown);
+                    }
+                });
+            });
+
+
+
+
+
+
+

@@ -1,12 +1,19 @@
 const express = require('express');
 const router = express.Router();
-const authController = require("../controllers/rutina");
+const rutinaController = require("../controllers/rutina");
 
-router.get('/view', authController.viewRutinas);    
+router.get('/view', rutinaController.viewRutinas);  
+router.get('/listas-ejercicios/:idRutina', rutinaController.viewListasRutina);
 
-router.get('/obtener/:rutinaId', authController.obtenerRutina); //obtener información de una rutina específica
-router.post('/crear', authController.crearRutina);
-router.put('/actualizar/:rutinaId', authController.actualizarRutina); //actualizar información de una rutina específica
-router.delete('/borrar/:rutinaId', authController.borrarRutina); //eliminar una rutina específica
+router.get('/borrar/:idRutina', rutinaController.borrarRutina)
+router.get('/obtener/:rutinaId', rutinaController.obtenerRutina); 
+
+router.post('/crear', rutinaController.crearRutina)
+
+router.get('/view/create', rutinaController.viewCrearRutina);
+router.post('/agregar-listas-a-rutina', rutinaController.agregarLista)
+router.delete('/borra-lista-de-rutina/:idRutina/:idLista', rutinaController.borrarLista)
+
+
 
 module.exports = router; 

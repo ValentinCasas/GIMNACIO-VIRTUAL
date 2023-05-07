@@ -11,15 +11,25 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // Relación muchos a uno con PerfilDeEntrenamiento
-      this.belongsTo(models.PerfilDeEntrenamiento, { foreignKey: 'idPerfilDeEntrenamiento' });
+      this.belongsTo(models.Usuario, { foreignKey: 'idUsuario' });
       // Relación uno a muchos con DetalleRutina
       this.hasMany(models.DetalleRutina, { foreignKey: 'idRutina' });
+      this.hasMany(models.SeguimientoEjercicio, { foreignKey: 'idRutina' });
+
+      this.belongsToMany(models.ListaEjercicios, { through: models.RutinaLista, foreignKey: 'idRutina' });
     }
     
   }
   Rutina.init({
-    idPerfilDeEntrenamiento: DataTypes.INTEGER,
-    fechaCreacion: DataTypes.DATE
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+    },  
+    idUsuario: DataTypes.INTEGER,
+    titulo: DataTypes.STRING,
+    fechaCreacion: DataTypes.DATE,
+    imagenRutina: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Rutina',

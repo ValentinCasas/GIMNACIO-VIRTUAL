@@ -5,11 +5,49 @@ block content
     head
         title Rutinas
 
+        link(rel='stylesheet' href='/ejercicios.css')
         link(rel='stylesheet' href='/rutinas.css')
-
-        script(src="/carrousel-splide.js" defer)
-        link(rel='stylesheet' href='/carrousel-splide.css')
 
     body
 
+
         section.col.col-lg-12.col-md-12
+            .row
+                .col-xs-12.col-sm-12.col-md-6.col-lg-7.px-2#cards
+                    .row.justify-content-center
+                        each rutina in Rutinas  
+                            .flip-card.mt-4.col-xs-12.col-sm-12.col-md-12.col-lg-7
+                                .card(id=`tarjeta-${rutina.id}`).mb-3.me-sm-4.mx-auto
+
+                                    a.delete-icon(href=`/rutinas/borrar/${rutina.id}`)
+                                        ion-icon(name="trash-outline")
+                                    a.ejercicio-link(href=`/rutinas/listas-ejercicios/${rutina.id}`)
+                                    .image 
+                                        img(src=`/${rutina.imagenRutina}` loading="lazy" alt="Descripción de la imagen")
+                                    .col.col-12.p-2.justify-content-center#tituloLista
+                                        span.title #{rutina.titulo}
+                                    span.price #{rutina.fechaCreacion.toLocaleDateString()}
+
+                .img.col-xs-12.col-sm-12.col-md-6.col-lg-5
+
+
+        a(href="/rutinas/view/create").button
+            span.button__text Agregar
+            span.button__icon
+                svg.svg(width="24" viewBox="0 0 24 24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round")
+                    line(x1="12" y1="12" x2="19" y2="12")
+                    line(x1="12" y1="12" x2="5" y2="12")
+                    line(x1="12" y1="12" x2="12" y2="19")
+                    line(x1="12" y1="12" x2="12" y2="5")                               
+
+
+        script.
+            $('a.card-link').click(function() {
+                var rutinaId = $(this).closest('.col').attr('id').split('-')[1];
+                window.location.href = `/rutinas/listas-ejercicios/${rutinaId}`;
+            });
+
+
+
+
+

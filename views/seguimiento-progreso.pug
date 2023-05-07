@@ -1,0 +1,17 @@
+extends layout
+
+block content
+
+    head
+        title Progreso
+
+        link(rel='stylesheet' href='/progreso.css')
+
+        script(src="/progreso.js" defer)
+
+    body
+
+        section.col.col-lg-12.col-md-12
+
+            canvas#myChart(width="400" height="300")
+

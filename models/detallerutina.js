@@ -14,10 +14,16 @@ module.exports = (sequelize, DataTypes) => {
       this.belongsTo(models.Rutina, { foreignKey: 'idRutina' });
       // Relación muchos a uno con Ejercicio
       this.belongsTo(models.Ejercicio, { foreignKey: 'idEjercicio' });
+      this.hasMany(models.Progreso, { foreignKey: 'idDetalleRutina' });
     }
     
   }
   DetalleRutina.init({
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+    },  
     idRutina: DataTypes.INTEGER,
     idEjercicio: DataTypes.INTEGER,
     tiempoEntrenamiento: DataTypes.TIME,

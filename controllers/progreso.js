@@ -1,4 +1,10 @@
 
+
+
+exports.viewProgreso = function (req, res) {
+    res.render("seguimiento-progreso");
+};
+
 exports.obtenerProgreso = function (req, res) {
 
 };

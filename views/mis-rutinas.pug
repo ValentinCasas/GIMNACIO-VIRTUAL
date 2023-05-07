@@ -1,0 +1,94 @@
+extends layout
+
+block content
+
+    head
+        title Mis Rutinas
+
+        link(rel='stylesheet' href='/ejercicios.css')
+        link(rel='stylesheet' href='/login.css')
+        link(rel='stylesheet' href='/register.css')
+        link(rel='stylesheet' href='/checkbox.css')
+        link(rel='stylesheet' href='/rutinas.css')
+
+
+    body
+
+        section.col.col-lg-12.col-md-12
+            .row
+                .formulario.col-xs-12.col-sm-12.col-md-6.col-lg-5.p-3
+                    form.form.col.col-xs-12.col-sm-12.col-md-12.col-lg-12(action="/rutinas/agregar-listas-a-rutina" method="POST")
+                        input(type="hidden" name="idRutina" value=idRutina)
+                        each lista in listasEjercicios
+                            div.m-2.p-2#contenedor-checkbox
+                                label(class="cyberpunk-checkbox-label")
+                                    input(class="cyberpunk-checkbox" name="listasSeleccionadas", value=lista.id type="checkbox")
+                                |   #{lista.titulo}
+                        button.submit.mt-4.mb-4(type="submit") Agregar listas a la rutina    
+
+
+                .col-xs-12.col-sm-12.col-md-6.col-lg-7#cards
+                    .row.justify-content-center
+                        each listaEjercicios in Lista  
+                            .flip-card.mt-4.col-xs-12.col-sm-12.col-md-12.col-lg-7(id=`flip-card-${listaEjercicios.id}`)
+                                .card(id=`tarjeta-${listaEjercicios.id}`).mb-3.me-sm-4.mx-auto
+
+                                    a.delete-icon.borrar-lista(href=`/rutinas/borra-lista-de-rutina/${idRutina}/${listaEjercicios.id}`)
+                                        ion-icon(name="backspace-outline")
+
+                                    a.ejercicio-link(href=`/ejercicio/listaEjercicios/${listaEjercicios.id}`)
+
+                                    .image 
+                                        img(src=`/${listaEjercicios.imagenLista}` loading="lazy" alt="Descripción de la imagen")
+                                    .col.col-12.p-2.justify-content-center#tituloLista
+                                        span.title #{listaEjercicios.titulo}
+                                    span.price #{listaEjercicios.fechaCreacion.toLocaleDateString()}
+
+
+        script.
+            $('a.card-link').click(function() {
+                var listaEjerciciosId = $(this).closest('.col').attr('id').split('-')[1];
+                window.location.href = `/rutinas/borra-lista-de-rutina/${idRutina}/${listaEjerciciosId}`;
+            });
+
+
+            $(document).on('click', 'a.borrar-lista', function(e) {
+                e.preventDefault();
+
+                // Obtiene la URL de la solicitud AJAX a través del atributo "href" del enlace
+                var url = $(this).attr('href');
+
+                // Realiza una solicitud AJAX DELETE al servidor para eliminar la lista
+                $.ajax({
+                    url: url,
+                    type: 'DELETE',
+                    success: function(data) {
+                        // Si la solicitud AJAX se realizó con éxito, elimina el div correspondiente
+                        var divId = 'flip-card-' + data.idLista;
+                        $('#' + divId).remove();
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        // Si la solicitud AJAX falló, muestra un mensaje de error
+                        console.log('Error al borrar lista:', errorThrown);
+                    }
+                });
+            });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

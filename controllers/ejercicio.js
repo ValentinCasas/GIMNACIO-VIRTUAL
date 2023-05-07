@@ -28,15 +28,60 @@ exports.viewEnlistar = async function (req, res) {
     res.render('enlistar', { Ejercicio: ejercicio[0], Listas: listas, ejercicioId: ejercicioId });
 };
 
+exports.desenlistar = async function (req, res) {
+    try {
+        const { ejercicioId, listaId } = req.params;
+
+        await listaEjercicio.destroy({ where: { idEjercicio: ejercicioId, idLista: listaId } })
+
+        const listaEjercicios = await listaEjercicio.findAll({
+            where: { idLista: listaId },
+            include: { model: Ejercicio },
+        });
+
+        const ejercicios = await Ejercicio.findAll();
+
+        const usuario = await Usuario.findAll({ where: { sessionId: req.sessionID } })
+
+        // Redirigir a la página correspondiente
+        res.json({ ejercicioId: ejercicioId });
+    } catch (error) {
+        // Devolver un objeto JSON indicando error
+        res.status(500).json({ error: error.message });
+    }
+};
+
 
 /* una lista en particular */
 exports.viewListaParticular = async function (req, res) {
     const { idLista } = req.params;
 
-    const listaEjercicios = await listaEjercicio.findAll({ where: { idLista: idLista } })
+    const listaEjercicios = await listaEjercicio.findAll({
+        where: { idLista: idLista },
+        include: { model: Ejercicio },
+    });
 
-    res.render('ejercicios-lista-particular', { ListaEjercicios: listaEjercicios });
+    const ejercicios = await Ejercicio.findAll();
+
+    const usuario = await Usuario.findAll({ where: { sessionId: req.sessionID } })
+
+    res.render('ejercicios-lista-particular', { ListaParticular: listaEjercicios, Ejercicios: ejercicios, Usuario: usuario, listaId: idLista });
 };
+
+exports.agregarEjercicioALista = async function (req, res) {
+    const { idLista, ejerciciosSeleccionados } = req.body;
+
+    const ejercicios = Array.isArray(ejerciciosSeleccionados) ? ejerciciosSeleccionados : [ejerciciosSeleccionados];
+
+    for (const idEjercicio of ejercicios) {
+        await listaEjercicio.create({
+            idEjercicio: idEjercicio,
+            idLista: idLista,
+        });
+    }
+
+    res.redirect(`/ejercicio/listaEjercicios/${idLista}`);
+}
 
 
 /* vista crear listas */
@@ -93,13 +138,13 @@ exports.enlistar = async function (req, res) {
 exports.borrarListaEjercicios = async function (req, res) {
     const { listaEjerciciosId } = req.params;
 
-    const listaEjercicio = await ListaEjercicios.findAll({ where: { id: listaEjerciciosId } });
-    let rutaImagen = `./public/imagenes-lista-ejercicios/${listaEjercicio[0].imagenLista}`;
+    const lista = await ListaEjercicios.findAll({ where: { id: listaEjerciciosId } });
+    let rutaImagen = `./public/imagenes-lista-ejercicios/${lista[0].imagenLista}`;
 
-    await Ejercicio.destroy({ where: { idListaEjercicio: listaEjercicio[0].id } });
+    await listaEjercicio.destroy({ where: { idLista: listaEjerciciosId } });
     await ListaEjercicios.destroy({ where: { id: listaEjerciciosId } });
 
-    if (listaEjercicio[0].imagenLista != "imagenes-importantes/gym-por-defecto.jpg") {
+    if (lista[0].imagenLista != "imagenes-importantes/gym-por-defecto.jpg") {
         fs.unlinkSync(rutaImagen, (err) => {
             if (err) throw err;
         });
@@ -113,7 +158,8 @@ exports.borrarListaEjercicios = async function (req, res) {
 /* todos los ejercicios */
 exports.viewEjercicios = async function (req, res) {
     const ejercicios = await Ejercicio.findAll();
-    res.render('ejercicios', { Ejercicio: ejercicios });
+    const usuario = await Usuario.findAll({ where: { sessionId: req.sessionID } })
+    res.render('ejercicios', { Ejercicio: ejercicios, Usuario: usuario });
 };
 
 exports.viewCrearEjercicios = async function (req, res) {

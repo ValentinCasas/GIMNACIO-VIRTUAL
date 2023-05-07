@@ -8,7 +8,11 @@ router.post('/listaEjercicios/create', ejercicioController.crearListaEjercicios)
 router.get('/borrar/listaEjercicios/:listaEjerciciosId', ejercicioController.borrarListaEjercicios); 
 router.get('/listaEjercicios/:idLista', ejercicioController.viewListaParticular);
 router.get('/view/enlistar/:ejercicioId', ejercicioController.viewEnlistar);
+
+
+router.delete('/desenlistar/:ejercicioId/:listaId', ejercicioController.desenlistar);
 router.post('/enlistar', ejercicioController.enlistar);
+
 
 router.get('/view', ejercicioController.viewEjercicios);
 router.get('/view/crear', ejercicioController.viewCrearEjercicios);
@@ -17,5 +21,6 @@ router.post('/crear', ejercicioController.crearEjercicio);
 router.post('/actualizar', ejercicioController.actualizarEjercicio); 
 router.get('/borrar/:ejercicioId', ejercicioController.borrarEjercicio); 
 
+router.post('/agregar-ejercicios-a-lista', ejercicioController.agregarEjercicioALista);
 
 module.exports = router; 

@@ -18,6 +18,11 @@ module.exports = (sequelize, DataTypes) => {
     
   }
   Progreso.init({
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+    },  
     idUsuario: DataTypes.INTEGER,
     idDetalleRutina: DataTypes.INTEGER,
     fechaProgreso: DataTypes.DATE,

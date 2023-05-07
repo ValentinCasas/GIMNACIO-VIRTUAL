@@ -13,40 +13,45 @@ block content
     body
 
 
-        section.col.col-lg-12.col-md-12.p-5
-            .row.row-cols-1.row-cols-sm-2.row-cols-md-3.g-4.d-flex.justify-content-center
-                each ejercicio in Ejercicio
+        section.col.col-lg-12.col-md-12
+            .row
+                .col-xs-12.col-sm-12.col-md-6.col-lg-7.px-2#cards
+                    .row.justify-content-center
+                        each ejercicio in Ejercicio
+                            .flip-card.mt-4.col-xs-12.col-sm-12.col-md-12.col-lg-7.mx-2
+                                if Usuario[0].rol != "cliente"
+                                    a.delete-icon-lista(href=`/ejercicio/borrar/${ejercicio.id}`)
+                                        ion-icon(name="trash-outline")
+                                .flip-card-inner
+                                    .flip-card-front
 
-                    .flip-card
-                        a.delete-icon-lista(href=`/ejercicio/borrar/${ejercicio.id}`)
-                            ion-icon(name="close-sharp")
-                        .flip-card-inner
-                            .flip-card-front
+                                        if Usuario[0].rol === "administrador"
+                                            a.ejercicio-link(href=`/ejercicio/obtener/${ejercicio.id}`) 
 
+                                        p.title #{ejercicio.nombre}
+                                        p #{ejercicio.grupoMuscular}
+                                        p #{ejercicio.nivelDificultad}
+                                    .flip-card-back.p-4
+                                        if Usuario[0].rol != "cliente"
+                                            a.ejercicio-link(href=`/ejercicio/obtener/${ejercicio.id}`)     
+                                        p #{ejercicio.descripcion}
 
-                                a.ejercicio-link(href=`/ejercicio/obtener/${ejercicio.id}`) 
+                                a.agregar-icon-lista(href=`/ejercicio/view/enlistar/${ejercicio.id}`).mb-4
+                                    ion-icon(name="bookmark-outline")        
 
-                                p.title #{ejercicio.nombre}
-                                p #{ejercicio.grupoMuscular}
-                                p #{ejercicio.nivelDificultad}
-                            .flip-card-back
-
-                                a.ejercicio-link(href=`/ejercicio/obtener/${ejercicio.id}`)     
-                                p.title #{ejercicio.descripcion}
-
-                        a.agregar-icon-lista(href=`/ejercicio/view/enlistar/${ejercicio.id}`)
-                            ion-icon(name="bookmark-outline")        
+                .img.col-xs-12.col-sm-12.col-md-6.col-lg-5
 
 
 
-        a(href="/ejercicio/view/crear").button
-            span.button__text Agregar
-            span.button__icon
-                svg.svg(width="24" viewBox="0 0 24 24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round")
-                    line(x1="12" y1="12" x2="19" y2="12")
-                    line(x1="12" y1="12" x2="5" y2="12")
-                    line(x1="12" y1="12" x2="12" y2="19")
-                    line(x1="12" y1="12" x2="12" y2="5")                               
+        if Usuario[0].rol != "cliente"
+            a(href="/ejercicio/view/crear").button
+                span.button__text Agregar
+                span.button__icon
+                    svg.svg(width="24" viewBox="0 0 24 24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round")
+                        line(x1="12" y1="12" x2="19" y2="12")
+                        line(x1="12" y1="12" x2="5" y2="12")
+                        line(x1="12" y1="12" x2="12" y2="19")
+                        line(x1="12" y1="12" x2="12" y2="5")                               
 
 
         script.

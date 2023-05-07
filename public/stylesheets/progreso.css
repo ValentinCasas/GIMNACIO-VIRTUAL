@@ -1,0 +1,29 @@
+:root {
+    --color-amarillo-global: #ffc107;
+    --color-grey-card: rgba(31, 31, 31, .87);
+    --color-grayDark-background: #aaa7a7;
+}
+
+body {
+    background-color: var(--color-grey-card);
+    overflow-x: hidden;
+}
+
+section {
+    margin-top: 55px;
+    height: 91vh;
+    background-color: #dfca9a;
+}
+
+
+
+.container {
+    width: 100%;
+    height: 500px;
+}
+
+
+canvas {
+    width: 100%;
+    height: 100%;
+}
