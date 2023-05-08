@@ -212,6 +212,7 @@ exports.actualizarEjercicio = async function (req, res) {
 exports.borrarEjercicio = async function (req, res) {
     const { ejercicioId } = req.params;
 
+    await listaEjercicio.destroy({ where: { idEjercicio: ejercicioId } });
     await Ejercicio.destroy({ where: { id: ejercicioId } });
 
     res.redirect("/ejercicio/view");

@@ -34,6 +34,8 @@ block content
                                 if Usuario[0].rol != "cliente"
                                     a.delete-icon-lista(id=`borrar-ejercicio-${lista.Ejercicio.id}` href=`/ejercicio/borrar/${lista.Ejercicio.id}`)
                                         ion-icon(name="trash-sharp")
+                                else 
+                                    a.delete-icon-lista        
                                 .flip-card-inner
                                     .flip-card-front
 
