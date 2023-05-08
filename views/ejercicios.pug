@@ -34,7 +34,8 @@ block content
                                     .flip-card-back.p-4
                                         if Usuario[0].rol != "cliente"
                                             a.ejercicio-link(href=`/ejercicio/obtener/${ejercicio.id}`)     
-                                        p #{ejercicio.descripcion}
+                                        div.flip-card-back-content
+                                            p #{ejercicio.descripcion}
 
                                 a.agregar-icon-lista(href=`/ejercicio/view/enlistar/${ejercicio.id}`).mb-4
                                     ion-icon(name="bookmark-outline")        

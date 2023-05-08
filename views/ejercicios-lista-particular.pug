@@ -46,7 +46,8 @@ block content
                                     .flip-card-back.p-4
                                         if Usuario[0].rol != "cliente" 
                                             a.ejercicio-link(href=`/ejercicio/obtener/${lista.Ejercicio.id}`)     
-                                        p #{lista.Ejercicio.descripcion}
+                                        div.flip-card-back-content
+                                            p #{lista.Ejercicio.descripcion}
 
                                 a.agregar-icon-lista.desenlistar-ejercicio(href=`/ejercicio/desenlistar/${lista.Ejercicio.id}/${ListaParticular[0].idLista}`).mb-4
                                     ion-icon(name="backspace-outline")    

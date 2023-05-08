@@ -8,13 +8,13 @@ exports.viewRetroalimentacion = async function (req, res) {
     const votos = await votosRetroalimentacion.findAll({ include: [{ model: Usuario, }, { model: Retroalimentacion, },], });
     const usuario = await Usuario.findAll({ where: { sessionId: req.sessionID } })
 
-    res.render("retroalimentacion", { Usuarios: usuarios, Usuario:usuario ,Retroalimentacion: retroalimentaciones.reverse(), Votos: votos, req: req });
+    res.render("retroalimentacion", { Usuarios: usuarios, Usuario: usuario, Retroalimentacion: retroalimentaciones.reverse(), Votos: votos, req: req });
 }
 
 exports.crearRetroalimentacion = async function (req, res) {
     const { retroalimentacion, idUsuario } = req.body;
 
-    const usuario = await Usuario.findAll({ where: { sessionId: idUsuario } })
+    const usuario = await Usuario.findAll({ where: { sessionId: idUsuario } });
 
     let nuevaRetroalimentacion;
 
@@ -24,10 +24,19 @@ exports.crearRetroalimentacion = async function (req, res) {
             fechaRetroalimentacion: new Date(),
             idUsuario: usuario[0].id,
         });
-    }
 
-    res.json({ nuevaRetroalimentacion });
+        nuevaRetroalimentacion = await Retroalimentacion.findByPk(nuevaRetroalimentacion.id, {
+            include: Usuario // Incluir información del usuario
+        });
+
+    }
+    const Votos = await votosRetroalimentacion.findAll({ include: [{ model: Usuario, }, { model: Retroalimentacion, },], });
+
+    let sessionId = req.sessionID; 
+
+    res.json({ nuevaRetroalimentacion, Votos, sessionId });
 }
+
 
 exports.votar = async function (req, res) {
     const { idUsuario, idRetroalimentacion } = req.params;
