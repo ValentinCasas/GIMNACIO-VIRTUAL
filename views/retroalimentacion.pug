@@ -45,13 +45,13 @@ block content
                                         div.dropdown
                                             button.btn.btn-link.dropdown-toggle(type='button' id='options' data-bs-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
                                             div.dropdown-menu.dropdown-menu-right(aria-labelledby='options')
-                                                a.dropdown-item#editar(data-id=retroalimentacion.id) Editar
+                                                a.dropdown-item.editar(data-id=retroalimentacion.id) Editar
                                                 a.dropdown-item#eliminar(data-id=retroalimentacion.id) Borrar
 
                             //zona descripcion
                             div.card-body.p-3
                                 p.card-text #{retroalimentacion.descripcion}
-                            
+
                             div.card-footer.border-0
                                 div.d-flex.align-items-center.justify-content-between
                                     //zona fecha
@@ -155,9 +155,10 @@ block content
             });
         });
 
-    //para abrir modal edicion
+    // Para abrir modal edición
     script.
-        $('#editar').click(function() {
+
+        $('.editar').click(function() {
             // Mostramos el modal-edit
             $('.modal-edit').removeClass('d-none');
 
@@ -183,16 +184,18 @@ block content
             }
         });
 
-
-        const botonEditar = document.getElementById('editar');
-
-        botonEditar.addEventListener('click', async function() {
-            const retroalimentacionId = 1; // Reemplaza con el ID de la retroalimentación deseada
-            const response = await fetch(`/retroalimentacion/${retroalimentacionId}`);
-            const data = await response.json();
-            const descripcion = data.descripcion;
-            document.getElementById('descripcion').value = descripcion;
+        $('.editar').each(function() {
+            $(this).click(async function() {
+                const retroalimentacionId = $(this).attr('data-id');
+                const response = await fetch(`/retroalimentacion/${retroalimentacionId}`);
+                const data = await response.json();
+                const descripcion = data.descripcion;
+                document.getElementById('descripcion').value = descripcion;
+            });
         });
+
+
+
 
     // Controlador de eventos para eliminar la retroalimentación
     script.

@@ -10,10 +10,21 @@ block content
     link(rel='stylesheet' href='/index.css')
     link(rel='stylesheet' href='/cards.css')
 
+    script(src="/index.js" defer)
     script(src="/carrousel-splide.js" defer)
     link(rel='stylesheet' href='/carrousel-splide.css')
 
   body
+
+    div#loader
+      div(class="loadingspinner")
+        div(id="square1")
+        div(id="square2")
+        div(id="square3")
+        div(id="square4")
+        div(id="square5")
+
+
 
     a(href="#contenido" id="flecha")
       ion-icon(name="chevron-down-outline")

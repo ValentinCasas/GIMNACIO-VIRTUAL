@@ -26,8 +26,8 @@ block content
                                     a.ejercicio-link(href=`/ejercicio/listaEjercicios/${listaEjercicios.id}`)
                                     .image 
                                         img(src=`/${listaEjercicios.imagenLista}` loading="lazy" alt="Descripción de la imagen")
-                                    .col.col-12.p-2.justify-content-center#tituloLista
-                                        span.title #{listaEjercicios.titulo}
+                                    
+                                    span.title #{listaEjercicios.titulo}
                                     span.price #{listaEjercicios.fechaCreacion.toLocaleDateString()}
 
                 .img.col-xs-12.col-sm-12.col-md-6.col-lg-5

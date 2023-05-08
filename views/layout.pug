@@ -22,6 +22,7 @@ html
     script(src="https://cdn.jsdelivr.net/npm/chart.js")
 
     link(rel='stylesheet' href='/todo.css')
+    link(rel='stylesheet' href='/loader.css')
 
 
   body
@@ -35,42 +36,43 @@ html
             li.nav-item.mx-3
               a.nav-link.active(href="/") Inicio
 
-            li.nav-item.mx-3
-              a.nav-link(href="/rutinas/view") Rutinas    
-
-            li.nav-item.mx-3
-              a.nav-link(href="/progreso/view") Progreso  
-
             if locals.isLoggedIn 
+              li.nav-item.mx-3
+                a.nav-link(href="/ejercicio/view") Ejercicios    
               div.nav-item.dropdown
                 a.nav-link.dropdown-toggle(href="#" role="button" id="dropdown1" data-bs-toggle="dropdown" aria-expanded="false")
-                  | Acerca de
+                  | Lo mio
                 ul.dropdown-menu.dropdown-menu-end(aria-labelledby="dropdown1")
-                  li
-                    a.dropdown-item(href="/retroalimentacion/view") Retroalimentacion
+
                   li
                     a.dropdown-item(href="/ejercicio/listaEjercicios/view") Lista ejercicios  
                   li
-                    a.dropdown-item(href="/ejercicio/view") ejercicios   
+                    a.dropdown-item(href="/rutinas/view") Rutinas   
+                  li
+                    a.dropdown-item(href="/progreso/view") Progreso   
+
+              div.nav-item.dropdown
+                a.nav-link.dropdown-toggle(href="#" role="button" id="dropdown1" data-bs-toggle="dropdown" aria-expanded="false")
+                  | Ayuda
+                ul.dropdown-menu.dropdown-menu-end(aria-labelledby="dropdown1")
+                  li
+                    a.dropdown-item(href="/retroalimentacion/view") Retroalimentacion
 
 
-            li.nav-item.mx-3
-              a.nav-link(href="#") Contacto
             li.nav-item.dropdown.mx-3
               a.nav-link.dropdown-toggle(href="#" role="button" id="dropdown2" data-bs-toggle="dropdown" aria-expanded="false") Sesión
               ul.dropdown-menu.dropdown-menu-end(aria-labelledby="dropdown2")
                 if !locals.isLoggedIn 
                   li
                     a.dropdown-item(href="/auth/view/login") Loguearse
-                if !locals.isLoggedIn 
                   li
                     a.dropdown-item(href="/auth/view/register") Registrarse
-                else  
-                  a.dropdown-item(href="/auth/view/register") Crear cuenta nueva
+
                 li
                   hr.dropdown-divider
-                li
-                  a.dropdown-item(href="/auth/logout") Cerrar sesión
+                if locals.isLoggedIn 
+                  li
+                    a.dropdown-item(href="/auth/logout") Cerrar sesión
 
     if error
       script.

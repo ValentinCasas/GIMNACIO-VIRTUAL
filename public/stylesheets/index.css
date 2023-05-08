@@ -1,6 +1,6 @@
 :root {
     --color-amarillo-global: #ffc107;
-    --color-grey-card:rgba(31, 31, 31, .87);
+    --color-grey-card: rgba(31, 31, 31, .87);
 }
 
 
@@ -18,20 +18,20 @@ body {
 /* scrollbar */
 ::-webkit-scrollbar {
     width: 6px;
-  }
-  
-  ::-webkit-scrollbar-thumb {
+}
+
+::-webkit-scrollbar-thumb {
     background-color: #3a3a3afd;
     border-radius: 10px;
     border: none;
-  }
-  
-  ::-webkit-scrollbar-track {
-    background-color: #1f1f1f;
-  }
-  
+}
 
-  
+::-webkit-scrollbar-track {
+    background-color: #1f1f1f;
+}
+
+
+
 
 .img-principal {
     background-image: url('../imagenes-gym/img-deportistas/mujer2.jpg');
@@ -68,7 +68,8 @@ h1 {
 }
 
 
-#contenido .left-column, .contenido2 .left-column {
+#contenido .left-column,
+.contenido2 .left-column {
     position: sticky;
     left: 50px;
     top: 25%;
@@ -76,7 +77,7 @@ h1 {
 }
 
 
-#contenido .left-column-carrousel{
+#contenido .left-column-carrousel {
     position: sticky;
     left: 50px;
     top: 5%;
@@ -149,7 +150,7 @@ h1 {
     background-color: #707070;
     height: auto;
     width: 100vw;
-    padding:10%;
+    padding: 10%;
 }
 
 
@@ -224,3 +225,4 @@ h1 {
     background-color: #ffe666;
     color: black;
 }
+
